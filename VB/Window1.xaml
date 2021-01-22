@@ -1,0 +1,42 @@
+<Window x:Class="SideBySideBar2DChart.Window1" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+        xmlns:local="clr-namespace:SideBySideBar2DChart"
+        Title="Window1" Height="350" Width="620">
+    <Window.DataContext>
+        <local:ChartViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <dxc:ChartControl Name="chartControl1">
+            <dxc:ChartControl.Diagram>
+                <dxc:XYDiagram2D SeriesItemsSource="{Binding Data}">
+                    <dxc:XYDiagram2D.SeriesItemTemplate>
+                        <DataTemplate>
+                            <dxc:BarSideBySideSeries2D DisplayName="{Binding Name}" 
+                                               DataSource="{Binding Values}"
+                                               ArgumentDataMember="Argument"
+                                               ValueDataMember="Value" 
+                                               BarWidth="0.6">
+                                <dxc:BarSideBySideSeries2D.Model>
+                                    <dxc:BorderlessSimpleBar2DModel/>
+                                </dxc:BarSideBySideSeries2D.Model>
+                            </dxc:BarSideBySideSeries2D>
+                        </DataTemplate>
+                    </dxc:XYDiagram2D.SeriesItemTemplate>
+                    <dxc:XYDiagram2D.AxisX>
+                        <dxc:AxisX2D TickmarksMinorVisible="False">
+                            <dxc:AxisX2D.DateTimeScaleOptions>
+                                <dxc:ManualDateTimeScaleOptions MeasureUnit="Year" GridAlignment="Year" 
+                                                                AutoGrid="False" GridSpacing="1"/>
+                            </dxc:AxisX2D.DateTimeScaleOptions>
+                        </dxc:AxisX2D>
+                    </dxc:XYDiagram2D.AxisX>
+                </dxc:XYDiagram2D>
+            </dxc:ChartControl.Diagram>
+            <dxc:ChartControl.Legends>
+                <dxc:Legend HorizontalPosition="Right"/>
+            </dxc:ChartControl.Legends>
+        </dxc:ChartControl>
+    </Grid>
+</Window>
